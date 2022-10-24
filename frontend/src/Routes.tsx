@@ -9,11 +9,10 @@ const Routes = () => (
       <Route path="/">
         <Auth />
       </Route>
-      <Redirect from="/auth/login" to="/auth/login" />
+      {/* <Redirect from="/auth/login" to="/auth/login" />
       <Route path="/auth/login">
         <Auth />
-      </Route>
-  
+      </Route>*/}
     </Switch>
   </BrowserRouter>
 );

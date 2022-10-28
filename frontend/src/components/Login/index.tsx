@@ -1,6 +1,6 @@
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
-import { requestBackendLogin } from 'requests';
+import { getAuthData, requestBackendLogin, saveAuthData } from 'requests';
 
 import './styles.css';
 
@@ -16,6 +16,9 @@ const Login = () => {
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        saveAuthData(response.data);
+        const token = getAuthData().access_token;
+        console.log('TOKEN GERADO: ' + token);
         console.log('SUCESSO', response);
       })
       .catch((error) => {

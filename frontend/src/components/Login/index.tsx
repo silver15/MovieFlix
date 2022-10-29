@@ -1,7 +1,7 @@
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { getAuthData, requestBackendLogin, saveAuthData } from 'requests';
+import { getAuthData, requestBackendLogin, saveAuthData } from 'util/requests';
 
 import './styles.css';
 

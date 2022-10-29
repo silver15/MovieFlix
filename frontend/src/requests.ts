@@ -14,7 +14,7 @@ export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ??
   'https://movieflix-devsuperior.herokuapp.com';
 
-  const tokenKey = 'authData';
+const tokenKey = 'authData';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'myclientid';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'myclientsecret';
@@ -44,11 +44,11 @@ export const requestBackendLogin = (loginData: LoginData) => {
   });
 };
 
-export const saveAuthData =( obj : LoginResponse) => {
+export const saveAuthData = (obj: LoginResponse) => {
   localStorage.setItem(tokenKey, JSON.stringify(obj));
-}
+};
 
 export const getAuthData = () => {
-  const str = localStorage.getItem(tokenKey) ?? "{}";
+  const str = localStorage.getItem(tokenKey) ?? '{}';
   return JSON.parse(str) as LoginResponse;
-}
+};

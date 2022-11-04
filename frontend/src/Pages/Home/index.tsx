@@ -5,10 +5,9 @@ import Login from '../../components/Login';
 
 import './styles.css';
 
-const Auth = () => {
+const Home = () => {
   return (
     <div className="auth-container">
-      <h1>{isAuthenticated() ? 'autentidado' : 'Não autenticado'}</h1>
       <div className="auth-banner-container">
         <h1>Avalie Filmes</h1>
         <p>
@@ -23,4 +22,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Home;

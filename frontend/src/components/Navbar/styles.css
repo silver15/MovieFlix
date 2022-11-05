@@ -2,8 +2,22 @@
     padding-left: 25px;
     padding-top: 18px;
     padding-bottom: 18px;
+    display: flex;
+    justify-content:space-between;
+
+
 }
 
 .nav-log-navbar h4{
     color: #000000;
+}
+
+.button {
+    margin-right: 20px;
+
+}
+
+.button-sair{
+    text-decoration: none;
+    color: black;
 }

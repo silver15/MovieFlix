@@ -20,8 +20,11 @@ type LocationState = {
 const Login = () => {
 
   const location = useLocation<LocationState>();
+
   const {from} =  location.state || { from: { pathname: '/movies'}};
+
   const {setAuthContextData} = useContext(AuthContext);
+  
   const { register, handleSubmit, formState:{errors} } = useForm<FormData>();
 
   const history = useHistory();

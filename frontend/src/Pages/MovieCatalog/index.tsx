@@ -11,10 +11,10 @@ const MoviesCatalog = () => {
       <div className="movie-banner-container">
         <h2>Tela Listagem de filmes</h2>
         <div>
-          <Link to="/movies/movieid">Acessar / Movies/1</Link>
+          <Link to="/movies/:movieId">Acessar / Movies/1</Link>
         </div>
         <div>
-          <Link to="/movies/movieid">Acessar / Movies/2</Link>
+          <Link to="/movies/:movieId">Acessar / Movies/2</Link>
         </div>
       </div>
       <div className="movie-form-container"></div>

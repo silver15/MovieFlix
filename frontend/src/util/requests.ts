@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
 import jwtDecode from 'jwt-decode';
@@ -81,8 +81,8 @@ axios.interceptors.response.use(function (response) {
   console.log("INTERCEPTOR RESPOSTA COM SUCESSO");
   return response;
 }, function (error) {
-  if (error.response.status === 401 || error.response.status === 403){
-    history.push('/auth');
+  if (error.response.status === 401){
+    history.push('/');
   }
   console.log("INTERCEPTOR RESPOSTA COM ERRO");
   return Promise.reject(error);
@@ -98,6 +98,17 @@ export const getTokenData = () : TokenData | undefined => {
     return undefined;
   }
 }
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
+};
 
 export const isAuthenticated = () : boolean => {
   const tokenData = getTokenData();

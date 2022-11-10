@@ -1,14 +1,21 @@
 import './styles.css';
 
-    type Props = {
-       reviews: string;
+    export type Props = {
+      text: string;
+
     }
 
-    const ReviewFormListing = ({ reviews} : Props) => {
+ 
+    const ReviewFormListing = ({ text} : Props) => {
 
         return(
             <div>
-                <p>titulo: {reviews}</p>
+                <div>
+                    <div>
+                        <h3>Informações</h3>
+                        <p><span style={{fontWeight: 'bold'}}> Nome: </span>{text}</p>
+                    </div>
+                </div>
             </div>
         )
     }

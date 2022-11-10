@@ -3,13 +3,14 @@ import ReviewForm from 'components/ReviewForm';
 import ReviewFormListing from 'components/ReviewFormListing';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Review } from 'type/review';
+import { Review } from 'type/reviews';
 import { hasAnyRoles, requestBackend } from 'util/requests';
 
 import './styles.css';
 
 type urlParams = {
   movieId: string;
+ 
  
 };
 
@@ -35,7 +36,7 @@ const MoviesDetails = () => {
       {hasAnyRoles(['ROLE_MEMBER']) && (
       <ReviewForm movieId={movieId} />
       )}
-      <ReviewFormListing reviews ="" />
+      <ReviewFormListing reviews ={reviews} />
 
     </div>
   );

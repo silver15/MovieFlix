@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { hasAnyRoles } from 'util/requests';
+
 import './styles.css';
 
 const MoviesCatalog = () => {
@@ -7,14 +7,14 @@ const MoviesCatalog = () => {
   
   return (
     <div className="movie-container">
-      <h1>Resultado = {hasAnyRoles(['ROLE_MEMBER']) ? 'SIM' : 'NÃO'}</h1>
+    
       <div className="movie-banner-container">
         <h2>Tela Listagem de filmes</h2>
         <div>
-          <Link to="/movies/:movieId">Acessar / Movies/1</Link>
+          <Link to="/movies/1">Acessar / Movies/1</Link>
         </div>
         <div>
-          <Link to="/movies/:movieId">Acessar / Movies/2</Link>
+          <Link to="/movies/2">Acessar / Movies/2</Link>
         </div>
       </div>
       <div className="movie-form-container"></div>

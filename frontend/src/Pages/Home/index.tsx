@@ -1,5 +1,5 @@
 import { ReactComponent as AuthImage } from 'assets/image/desenho.svg';
-import { isAuthenticated } from 'util/requests';
+
 
 import Login from '../../components/Login';
 

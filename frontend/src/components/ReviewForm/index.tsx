@@ -1,9 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
+import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
+import { Review } from 'type/reviews';
 import { requestBackend } from 'util/requests';
+
+import './styles.css';
 
 type Props = {
   movieId: string;
+  onInsertReview: (review: Review) => void;
 };
 
 type FormData = {
@@ -11,11 +16,12 @@ type FormData = {
   text: string;
 };
 
-const ReviewForm = ({ movieId }: Props) => {
+const ReviewForm = ({ movieId, onInsertReview }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm<FormData>();
 
   const onSubmit = (formData: FormData) => {
@@ -32,6 +38,8 @@ const ReviewForm = ({ movieId }: Props) => {
 
     requestBackend(config)
       .then((response) => {
+        setValue('text', '')
+        onInsertReview(response.data);
         console.log('SUCESSO AO SALVAR', response);
       })
       .catch((error) => {
@@ -40,21 +48,24 @@ const ReviewForm = ({ movieId }: Props) => {
   };
 
   return (
-    <div>
+    <div className="base-card evaluation-card">
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
+          <div className="mb-4">
             <input
               {...register('text', {
                 required: 'Campo obrigatório',
               })}
               type="text"
               name="text"
+              className="form-control evaluation-input base-input"
               placeholder="Deixe sua avaliação aqui"
             />
             <div>{errors.text?.message}</div>
           </div>
-          <button type="submit">SALVAR AVALIAÇÃO</button>
+          <div className="evaluation-submit">
+            <Button text="Salvar Avaliação" />
+          </div>
         </form>
       </div>
     </div>

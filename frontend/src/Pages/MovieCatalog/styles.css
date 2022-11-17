@@ -1,10 +1,30 @@
 .movie-container {
-    font-weight: 700;
-    font-size: 16px;
-    padding-left: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
+  color: #ffffff;
+
   }
 
-  .movie-banner-container h2{
-    font-weight: 700;
-    font-size: 20px;
+  .movie{
+    margin-top: 40px;
+    color: #ffffff;
   }
+
+  .movie ul{
+  font-size: 24px;
+  list-style-type: none;
+  text-decoration: none;
+  padding-left: 0px;
+  font-style: normal;
+   
+  }
+
+
+ 
+  
+
+
+
+ 
+
+ 

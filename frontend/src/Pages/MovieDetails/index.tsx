@@ -10,8 +10,6 @@ import './styles.css';
 
 type urlParams = {
   movieId: string;
- 
- 
 };
 
 const MoviesDetails = () => {
@@ -30,14 +28,21 @@ const MoviesDetails = () => {
     });
   }, [movieId]);
 
+  const handleInsertReview = (review: Review) => {
+      const clone = [...reviews];
+      clone.push(review);
+      setReviews(clone);
+  }
+
   return (
     <div className="container">
       <h1>Tela Listagem de filme id: {movieId}</h1>
-      {hasAnyRoles(['ROLE_MEMBER']) && (
-      <ReviewForm movieId={movieId} />
-      )}
-      <ReviewFormListing reviews ={reviews} />
-
+      {hasAnyRoles(['ROLE_MEMBER']) && <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />}
+      {reviews?.map((item) => (
+        <div key={item.id}>
+          <ReviewFormListing name={item.user.name} text={item.text} />
+        </div>
+      ))}
     </div>
   );
 };

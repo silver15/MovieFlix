@@ -7,18 +7,18 @@ const MoviesCatalog = () => {
   
   return (
     <div className="movie-container">
-    
-      <div className="movie-banner-container">
         <h2>Tela Listagem de filmes</h2>
-        <div>
-          <Link to="/movies/1">Acessar / Movies/1</Link>
+        <div className="movie">
+          <ul>
+          <Link  to="/movies/1">
+            <li>Acessar / Movies/1</li>
+            </Link>
+          <Link to="/movies/2">
+            <li>Acessar / Movies/2</li>
+            </Link>
+          </ul>
         </div>
-        <div>
-          <Link to="/movies/2">Acessar / Movies/2</Link>
-        </div>
-      </div>
-      <div className="movie-form-container"></div>
-    </div>
+ </div>
   );
 };
 export default MoviesCatalog;

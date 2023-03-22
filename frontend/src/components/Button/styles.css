@@ -21,5 +21,11 @@
       width: 384px;
       height: 65px;
     }
+
+    @media (min-width:1200px) {
+      .btn-normal-container button {
+        width:400px;
+        height: 50px;
+      }
   }
-  
+}

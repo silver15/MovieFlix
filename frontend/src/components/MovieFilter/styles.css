@@ -1,0 +1,22 @@
+.movie-filter-container{
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .movie-filter-name-container{
+    display: flex;
+    align-items: center;
+    
+  }
+
+  .movie-filter-name-container input{
+    border: none;
+  }
+
+  .movie-filter-name-container input:focus{
+    box-shadow: none;
+  }
+
+  .movie-filter-name-container input::placeholder{
+    color: #FFFFFF;
+  }

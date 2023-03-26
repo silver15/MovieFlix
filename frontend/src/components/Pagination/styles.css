@@ -21,15 +21,20 @@
 
 .arrow-previous{
     transform: rotate(-180deg);
+    color: #FFC700;
 }
 
 .arrow-next{
-    margin-left: 10px;
+    color: #FFC700;
 }
 
 .pagination-item.active{
 background-color: #FFC700;
 }
+
+.pagination-link-active{
+    background-color: #FFC700;
+    }
 
 .arrow-inactive{
     color: #9E9E9E;
@@ -37,4 +42,9 @@ background-color: #FFC700;
 
 .arrow-active{
     color: #FFC700;
+}
+
+.pagination-arrow-container{
+    display: flex;
+    align-content: center;
 }

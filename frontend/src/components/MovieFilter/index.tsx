@@ -2,19 +2,21 @@ import { ReactComponent as SearchIcon } from 'assets/image/search-icon.svg';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
-import { Genre } from 'type/genres';
+import { Genre } from 'type/genre';
 import { requestBackend } from 'util/requests';
 
 import './styles.css';
+
+type MovieFilterData = {
+  name: string;
+  genre: Genre | null;
+};
+
 
 const MovieFilter = () => {
 
   const [selectGenre, setSelectGenre] = useState<Genre[]>([]);
 
-  type MovieFilterData = {
-    name: string;
-    genres: Genre;
-  };
 
   const {
     register,
@@ -26,8 +28,9 @@ const MovieFilter = () => {
     console.log('Enviou', formData);
   };
 
+
   useEffect(() => {
-    requestBackend({ url: '/genres' }).then((response) => {
+    requestBackend({ url: '/genres', withCredentials:true }).then((response) => {
       setSelectGenre(response.data.content);
     });
   }, []);
@@ -43,23 +46,24 @@ const MovieFilter = () => {
             placeholder="Nome do Filme"
             name="name"
           />
-          <button>
+          <button className="movie-filter-search-icon">
             <SearchIcon />
           </button>
         </div>
         <div className="movie-filter-botton-container">
           <div className="movie-filter-range-container">
           <Controller
-                    name="genres"
+                    name="genre"                    
                     control={control}
                     render={({ field }) => (
                       <Select
                         {...field}
                         options={selectGenre}
                         isClearable
+                        placeholder="Gêneros"
                         classNamePrefix="product-crud-select"
-                        getOptionLabel={(genres: Genre) => genres.name}
-                        getOptionValue={(genres:Genre) =>  String(genres.id)
+                        getOptionLabel={(genre: Genre) => genre.name}
+                        getOptionValue={(genre: Genre) =>  String(genre.id)
                         }
                       />
                     )}
@@ -72,3 +76,5 @@ const MovieFilter = () => {
   );
 };
 export default MovieFilter;
+
+

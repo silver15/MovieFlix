@@ -38,6 +38,20 @@
   @media (min-width: 768px){
     .movie-filter-container{
      width: 620px;
+     padding: 10px 15px;
+     flex: 1;
+    }
+
+    .movie-filter-form{
+        display: flex;
+    }
+    .movie-filter-name-container{
+      flex: 1;
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+    .movie-filter-botton-container{
+      flex: 1;
     }
   }
 

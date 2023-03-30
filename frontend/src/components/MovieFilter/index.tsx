@@ -16,11 +16,13 @@ type MovieFilterData = {
 const MovieFilter = () => {
 
   const [selectGenre, setSelectGenre] = useState<Genre[]>([]);
-
+ 
 
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     control,
   } = useForm<MovieFilterData>();
 
@@ -28,10 +30,24 @@ const MovieFilter = () => {
     console.log('Enviou', formData);
   };
 
+  const handleFormClear = () =>{
+    setValue('name', '');
+    setValue('genre', null);
+  }
+
+  const handleChangeRange = (value: Genre) => {
+    setValue('genre', value);
+
+    const obj: MovieFilterData ={
+      name: getValues('name'),
+      genre: getValues('genre')
+    }
+    console.log('Enviou', obj);
+  }
 
   useEffect(() => {
     requestBackend({ url: '/genres', withCredentials:true }).then((response) => {
-      setSelectGenre(response.data.content);
+      setSelectGenre(response.data);
     });
   }, []);
 
@@ -61,7 +77,8 @@ const MovieFilter = () => {
                         options={selectGenre}
                         isClearable
                         placeholder="Gêneros"
-                        classNamePrefix="product-crud-select"
+                        classNamePrefix="movie-crud-select"
+                        onChange={value =>handleChangeRange(value as Genre)}
                         getOptionLabel={(genre: Genre) => genre.name}
                         getOptionValue={(genre: Genre) =>  String(genre.id)
                         }
@@ -69,7 +86,7 @@ const MovieFilter = () => {
                     )}
                   />
           </div>
-          <button className="btn btn-outline-primary">Limpar</button>
+          <button onClick={handleFormClear} className="btn btn-outline-primary">Limpar</button>
         </div>
       </form>
     </div>

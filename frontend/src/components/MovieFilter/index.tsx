@@ -7,13 +7,17 @@ import { requestBackend } from 'util/requests';
 
 import './styles.css';
 
-type MovieFilterData = {
+export type MovieFilterData = {
   name: string;
   genre: Genre | null;
 };
 
+type Props = {
+  onSubmitFilter : (data: MovieFilterData) => void;
+}
 
-const MovieFilter = () => {
+
+const MovieFilter = ( {onSubmitFilter} : Props) => {
 
   const [selectGenre, setSelectGenre] = useState<Genre[]>([]);
  
@@ -27,7 +31,7 @@ const MovieFilter = () => {
   } = useForm<MovieFilterData>();
 
   const onSubmit = (formData: MovieFilterData) => {
-    console.log('Enviou', formData);
+    onSubmitFilter(formData);
   };
 
   const handleFormClear = () =>{
@@ -42,7 +46,7 @@ const MovieFilter = () => {
       name: getValues('name'),
       genre: getValues('genre')
     }
-    console.log('Enviou', obj);
+    onSubmitFilter(obj);
   }
 
   useEffect(() => {

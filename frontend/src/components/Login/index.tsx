@@ -4,6 +4,7 @@ import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getTokenData, requestBackendLogin, saveAuthData } from 'util/requests';
+import { toast } from 'react-toastify';
 
 import './styles.css';
 
@@ -32,6 +33,7 @@ const Login = () => {
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        toast.info('Login realizado com sucesso!!')
         saveAuthData(response.data);
       
        setAuthContextData({
@@ -41,7 +43,7 @@ const Login = () => {
         history.replace(from);
       })
       .catch((error) => {
-        console.log('ERRO', error);
+        toast.error('Erro de Login ou Senha!!')
       });
   };
 

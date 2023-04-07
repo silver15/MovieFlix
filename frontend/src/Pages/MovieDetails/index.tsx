@@ -41,7 +41,7 @@ const MoviesDetails = () => {
       <DetalhesFilme />
 
       <div className="container">
-        <h1>Tela Listagem de filme id: {moviesId}</h1>
+      
         {hasAnyRoles(['ROLE_MEMBER']) && (
           <ReviewForm movieId={moviesId} onInsertReview={handleInsertReview} />
         )}

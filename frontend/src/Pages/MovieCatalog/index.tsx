@@ -3,13 +3,14 @@ import { AxiosRequestConfig } from 'axios';
 import MovieCard from 'components/MovieCard';
 import MovieFilter, { MovieFilterData } from 'components/MovieFilter';
 import Pagination from 'components/Pagination';
-import { useEffect, useState, useCallback} from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Movies } from 'type/movies';
 import { SpringPage } from 'type/vendor/spring';
 import { requestBackend } from 'util/requests';
 
 import './styles.css';
+import CardLoader from './CardLoader';
 
 type ControlComponentsData = {
   activePage: number;
@@ -22,18 +23,20 @@ const MovieCatalog = () => {
   const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>(
     {
       activePage: 0,
-      filterData: {name: "", genre: null}
+      filterData: { name: "", genre: null }
     }
 
   );
 
   const handlePageChange = (pageNumber: number) => {
-    setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData});
+    setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData });
   };
 
   const handSubmitFilter = (data: MovieFilterData) => {
-    setControlComponentsData({ activePage: 0, filterData: data});
+    setControlComponentsData({ activePage: 0, filterData: data });
   };
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const getMovies = useCallback(() => {
     const config: AxiosRequestConfig = {
@@ -42,16 +45,21 @@ const MovieCatalog = () => {
       withCredentials: true,
       params: {
         page: controlComponentsData.activePage,
-        size: 3,
+        size: 4,
         name: controlComponentsData.filterData.name,
         genreId: controlComponentsData.filterData.genre?.id
 
       },
     };
 
+    setIsLoading(true);
     requestBackend(config).then((response) => {
       setPage(response.data);
+    }).finally(() => {
+      setIsLoading(false);
     });
+
+
 
   }, [controlComponentsData]);
 
@@ -66,14 +74,15 @@ const MovieCatalog = () => {
     <div className=" container my-4">
       <MovieFilter onSubmitFilter={handSubmitFilter} />
       <div className="row">
-        {page?.content.map((movies) => (
+        {isLoading ? <CardLoader /> : (
+          page?.content.map((movies) => (
 
           <div key={movies.id} className="col-sm-6 col-lg-4 col-xl-3">
             <Link to={`/movies/${movies.id}`}>
               <MovieCard movies={movies} />
             </Link>
           </div>
-        ))}
+        )))}
       </div>
 
       <div className="row">

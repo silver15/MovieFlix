@@ -1,4 +1,4 @@
-import { ReactComponent as SearchIcon } from 'assets/image/search-icon.svg';
+
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
@@ -58,18 +58,7 @@ const MovieFilter = ( {onSubmitFilter} : Props) => {
   return (
     <div className=" base-card movie-filter-container">
       <form onSubmit={handleSubmit(onSubmit)} className="movie-filter-form">
-        <div className="movie-filter-name-container">
-          <input
-            {...register('name')}
-            type="text"
-            className="form-control"
-            placeholder="Nome do Filme"
-            name="name"
-          />
-          <button className="movie-filter-search-icon">
-            <SearchIcon />
-          </button>
-        </div>
+        
         <div className="movie-filter-botton-container">
           <div className="movie-filter-range-container">
           <Controller
@@ -81,7 +70,8 @@ const MovieFilter = ( {onSubmitFilter} : Props) => {
                         options={selectGenre}
                         isClearable
                         placeholder="Gêneros"
-                        classNamePrefix="movie-crud-select"
+                        className="movie-selecect"
+                       
                         onChange={value =>handleChangeRange(value as Genre)}
                         getOptionLabel={(genre: Genre) => genre.name}
                         getOptionValue={(genre: Genre) =>  String(genre.id)

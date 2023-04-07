@@ -35,6 +35,10 @@
     margin-right: 10px;
   }
 
+  .movie-selecect{
+    color: black;
+  }
+
   @media (min-width: 768px){
     .movie-filter-container{
      width: 620px;

@@ -3,6 +3,7 @@ import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 import { Review } from 'type/reviews';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 
 import './styles.css';
 
@@ -40,10 +41,10 @@ const ReviewForm = ({ movieId, onInsertReview }: Props) => {
       .then((response) => {
         setValue('text', '')
         onInsertReview(response.data);
-        console.log('SUCESSO AO SALVAR', response);
+        toast.info('Avaliação realizado com sucesso');
       })
       .catch((error) => {
-        console.log('ERRO AO SALVAR', error);
+        console.log("error");
       });
   };
 
@@ -55,6 +56,7 @@ const ReviewForm = ({ movieId, onInsertReview }: Props) => {
             <input
               {...register('text', {
                 required: 'Campo obrigatório',
+
               })}
               type="text"
               name="text"

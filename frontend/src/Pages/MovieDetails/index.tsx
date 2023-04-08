@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { Review } from 'type/reviews';
 import { hasAnyRoles, requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 
 import './styles.css';
 
@@ -25,7 +26,10 @@ const MoviesDetails = () => {
       url: `/movies/${moviesId}/reviews`,
       withCredentials: true,
     };
-    requestBackend(config).then((response) => {
+
+
+    requestBackend(config)
+    .then((response) => {
       setReviews(response.data);
     });
   }, [moviesId]);
